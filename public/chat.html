@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chit Chat</title>
+  <link rel="icon" href="img/favicon.png" />
+  <link rel="stylesheet" href="css/styles.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap&family=Russo+One&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Josefin Sans', sans-serif;">
+  <div class="chat">
+    <div id="sidebar" class="chat__sidebar"></div>
+
+    <div class="chat__main">
+      <div id="messages" class="chat__messages"></div>
+
+      <div class="compose">
+        <form id="msgForm">
+          <input type="text" autocomplete="off" required placeholder="Message" id="input" />
+          <button id="submit"><img height="18px" src="https://img.icons8.com/windows/2x/filled-sent.png"
+              alt="Send"></button>
+        </form>
+
+
+        <button id="loc">Send Location</button>
+      </div>
+    </div>
+  </div>
+
+  <script id="msg-template" type="text/html">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p>{{message}}</p>
+      </div>
+    </script>
+
+  <script id="location-msg-template" type="text/html">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p><a href="{{url}}" target="_blank">{{username}}'s current Location</a></p>
+      </div>
+    </script>
+
+  <script id="sidebar-template" type="text/html">
+      <h2 style="color: lightgreen" class="room-title">{{room}}</h2>
+      <h3 class="list-title">Users</h3>
+      <ul class="users">
+        {{#users}}
+          <li id="li-users" style="color: coral">{{username}}</li>
+          <br>
+        {{/users}}
+      </ul>
+    </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.0.1/mustache.min.js"
+    integrity="sha512-6AXIWogbKpsHvoZJrJtHpIYES4wP8czSj0zk7ZfwOYS8GWYFNSykwdfapt7yQc4ikZytemBu+QyVObzBHJMwYg=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"
+    integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js"
+    integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w=="
+    crossorigin="anonymous"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+
+</html>
